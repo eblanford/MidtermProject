@@ -1,6 +1,9 @@
 package utilities;
 import java.io.*;
 import java.nio.file.*;
+import java.util.ArrayList;
+
+import products.Product;
 public class ReadWriteFiles {
 
 
@@ -46,17 +49,21 @@ public class ReadWriteFiles {
 			e.printStackTrace();
 		}
 	}
-	public static void readFromFile(String dirString, String filePath) {
+	public static ArrayList<Product> readFromFile(String dirString, String filePath) {
 		Path readFile = Paths.get(dirString, filePath);
-		
+		ArrayList<Product> productList = new ArrayList<Product>();
 		File file = readFile.toFile();
 		
 		try {
 			FileReader fr = new FileReader(file);
 			BufferedReader reader = new BufferedReader(fr);
 			String line = reader.readLine();
+			
 			while(line != null) {
-				System.out.println(line);
+				String[] list = line.split(",");
+				int result = Integer.parseInt(list[3]);
+				Product product = new Product(list[0], list[1], list[2],result);
+				productList.add(product);
 				line = reader.readLine();
 			}
 			reader.close();
@@ -66,6 +73,6 @@ public class ReadWriteFiles {
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("Something went wrong");
-		}
-	}
+		}return productList;
+	} 
 }
