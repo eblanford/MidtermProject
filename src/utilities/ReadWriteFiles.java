@@ -1,6 +1,14 @@
 package utilities;
-import java.io.*;
-import java.nio.file.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import products.Product;
@@ -49,8 +57,9 @@ public class ReadWriteFiles {
 			e.printStackTrace();
 		}
 	}
-	public static ArrayList<Product> readFromFile(String dirString, String filePath) {
-		Path readFile = Paths.get(dirString, filePath);
+
+	public static ArrayList<Product> readFromFile() {
+		Path readFile = Paths.get("resources/ProductList.txt");
 		ArrayList<Product> productList = new ArrayList<Product>();
 		File file = readFile.toFile();
 		
