@@ -12,7 +12,7 @@ public class Cash extends Payment {
 		this.total = total;
 		this.cashBack = cashBack;
 		this.receipt = receipt;
-		
+				
 	}
 
 	public int getTenderedAmt() {
