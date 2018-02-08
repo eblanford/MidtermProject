@@ -5,6 +5,7 @@ public class Product {
 	private String category;
 	private String description;
 	private int price;
+	private int quantity;
 
 	public Product() {
 	}
@@ -15,6 +16,7 @@ public class Product {
 		this.category = category;
 		this.description = description;
 		this.price = price;
+		this.quantity = 1;
 	}
 
 	public String getName() {
@@ -48,8 +50,17 @@ public class Product {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-@Override
-public String toString() {
-	return name + " " + category + " " + description + " " + price;
-}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	@Override
+	public String toString() {
+		return name + " " + category + " " + description + " " + price;
+	}
 }

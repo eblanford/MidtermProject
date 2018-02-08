@@ -57,7 +57,7 @@ public class ReadWriteFiles {
 			e.printStackTrace();
 		}
 	}
-
+//Reads list of products from ProductList.txt and returns a ArrayList<Products>
 	public static ArrayList<Product> readFromFile() {
 		Path readFile = Paths.get("resources/ProductList.txt");
 		ArrayList<Product> productList = new ArrayList<Product>();
