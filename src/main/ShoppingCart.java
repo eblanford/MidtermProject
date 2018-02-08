@@ -1,17 +1,15 @@
+package main;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import products.Product;
-import utilities.Validator;
 
-public class shoppingCart {
+public class ShoppingCart {
 	//use in main to send as argument-ArrayList<Product> usersCart = new ArrayList<>();
 
 	
 	public static ArrayList<Product> addToCart(Product product, ArrayList<Product> cart){
-		Scanner scan = new Scanner(System.in);
-		product.setQuantity(Validator.getInt(scan, "How many " + product.getName() + " would you like?", 1));
 		cart.add(product);
+		System.out.println(product.getName() + " has been added to your cart");
 		return cart;
 	}
 	public static ArrayList<Product> removeFromCart(Product product, ArrayList<Product> cart){
@@ -33,5 +31,17 @@ public class shoppingCart {
 		return sum; 
 	}
 	
+	public static double taxCart(ArrayList<Product> cart) {
+		double tax = 0;
+		tax = sumCart(cart) * ((double) 0.06);
+		return tax;
+	}
+
+	public static void viewShoppingCart(ArrayList<Product> cart) {
+		System.out.printf("%-10s $%-10.2f", "Subtotal:", sumCart(cart) / ((double) 100));
+		System.out.printf("%-10s $%-10.2f", "Tax:", taxCart(cart) / 100);
+		System.out.printf("%-10s $%-10.2f", "Grand Total:", (sumCart(cart) / ((double) 100)) + (taxCart(cart) / 100));
+	}
+
 }
 

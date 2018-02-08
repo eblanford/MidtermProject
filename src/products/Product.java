@@ -8,6 +8,11 @@ public class Product {
 	private int quantity;
 
 	public Product() {
+		this.name = "";
+		this.category = "";
+		this.description = "";
+		this.price = 0;
+		this.quantity = 0;
 	}
 
 	public Product(String name, String category, String description, int price) {
