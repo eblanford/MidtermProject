@@ -37,4 +37,10 @@ public class CreditCard extends Payment {
 		this.cvvNumber = cvvNumber;
 	}
 
+	@Override
+	public void pay() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
