@@ -1,6 +1,6 @@
 package pay;
 
-public class Check extends Pay {
+public class Check extends Payment {
 	
 	String customerName;
 	int routingNumber;

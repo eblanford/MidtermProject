@@ -6,7 +6,7 @@ import java.util.Scanner;
 import pay.Cash;
 import pay.Check;
 import pay.CreditCard;
-import pay.Pay;
+import pay.Payment;
 import products.Product;
 import utilities.ReadWriteFiles;
 import utilities.Validator;
@@ -17,7 +17,7 @@ public class POSApp {
 		// Variable Declaration
 		Scanner scan = new Scanner(System.in);
 		Product userItem;
-		Pay userPayment;
+		Payment userPayment;
 		String paymentType;
 		String userName;
 		String purchase = "y";
@@ -27,14 +27,14 @@ public class POSApp {
 		// System greeting
 		System.out.print("Welcome to the Grand Circus Tea Party!");
 		userName = Validator.getString(scan, "What is your name? ");
-		//FIXME: Take in a line, not just a single word??
-		
+		// FIXME: Take in a line, not just a single word??
+
 		// Stores userItem with the product information and quantity
 		userItem = itemMenu(scan);
-		
+
 		// Will allow user to exit store once inside the if statement
 		OUTER_LOOP:
-		//checks that user did not choose to exit the store
+		// checks that user did not choose to exit the store
 		if (userItem != null) {
 			// Verifies if the user would like to purchase, select a new item, or exit
 			while (purchase.equalsIgnoreCase("n")) {
@@ -54,7 +54,6 @@ public class POSApp {
 				}
 			}
 
-
 			// FIXME add an overloaded method to the getString to only accept three given
 			// inputs
 			paymentType = Validator.getString(scan, "Will you be paying with a check, cash, or credit today?", "cash",
@@ -67,9 +66,8 @@ public class POSApp {
 			// file
 			userPayment.receipt();
 
-
 		}
-		
+
 		System.out.println("Thanks for shopping with us today, " + userName);
 		scan.close();
 	}
@@ -93,29 +91,25 @@ public class POSApp {
 		// Prompts the user to pick an item
 		userOption = Validator.getInt(sc, "Please pick an item number from the list to view: ", 1, count);
 
-		if(userOption != count) {
-			//Creates our new product
-			userItem = fileInput.get(userOption -1);
+		if (userOption != count) {
+			// Creates our new product
+			userItem = fileInput.get(userOption - 1);
 
 			// FIXME OR SYSOUT userItem via "toString" formatting
 			System.out.print("The item you selected is " + userItem.getName());
-			System.out.println(", the cost of this item is $" + userItem.getPrice() / (double) (100));
+			System.out.printf(", the cost of this item is $%.2f", userItem.getPrice() / (double) (100));
 			
-			// FIXME Need a Qty variable, getters & setters in Product Class Folder
-			// userItem.setQty() = Validator.getInt(sc,
-			// "Please enter the quantity you would like to purchase (we do not have the
-			// capacity to make more than 100)\nQty:",
-			// 0, 100);
-		
-			// FIXME Need a subTotal method in Product class (qty * price)
-			// System.out.println("Your subtotal comes to: " + userItem.subTotal() /
-			// ((double) 100));
+			userItem.setQuantity(Validator.getInt(sc,
+					"Please enter the quantity you would like to purchase (we do not have thecapacity to make more than 100)\nQty:",
+					0, 100));
+
+			// FIXME maybe make a subTotal method in Product class (qty * price)
+			System.out.printf("Your subtotal comes to: $%.2f",
+					(userItem.getPrice() * userItem.getQuantity()) / ((double) 100));
 		}
-		
-		
+
 		return userItem;
 	}
-
 
 	// FIXME to include subTotal, taxTotal, and grandTotal calculation methods in
 	// Product
@@ -127,7 +121,7 @@ public class POSApp {
 	}
 
 	// determines which subclass to set our Pay object to
-	public static Pay createPayment(String paymentType) {
+	public static Payment createPayment(String paymentType) {
 		if (paymentType.equalsIgnoreCase("cash")) {
 			return new Cash();
 		} else if (paymentType.equalsIgnoreCase("credit")) {
