@@ -35,7 +35,7 @@ public class POSApp {
 		// Will allow user to exit store once inside the if statement
 		OUTER_LOOP:
 		// checks that user did not choose to exit the store
-		if (userItem != null) {
+		while (userItem != null) {
 			// Verifies if the user would like to purchase, select a new item, or exit
 			while (purchase.equalsIgnoreCase("n")) {
 				option = Validator.getInt(scan,
@@ -44,11 +44,11 @@ public class POSApp {
 				switch (option) {
 				case 1:
 					basket = ShoppingCart.addToCart(userItem, basket);
-					String viewCart = Validator.getString(scan, "Would you like to view your cart total? (yes/no)",
+					String viewCart = Validator.getString(scan, "Would you like to view your cart total? (yes/no) ",
 							"yes", "no");
 					if (viewCart.equalsIgnoreCase("yes"))
 						ShoppingCart.viewShoppingCart(basket);
-					String keepShopping = Validator.getString(scan, "Would you like to continue shopping? (yes/no)",
+					String keepShopping = Validator.getString(scan, "\nWould you like to continue shopping? (yes/no) ",
 							"yes", "no");
 					if (keepShopping.equalsIgnoreCase("yes")) {
 						userItem = itemMenu(scan);
@@ -65,11 +65,21 @@ public class POSApp {
 				}
 			}
 
-			paymentType = Validator.getString(scan, "Will you be paying with a check, cash, or credit today?", "cash",
+			paymentType = Validator.getString(scan, "\nWill you be paying with a check, cash, or credit today? ",
+					"cash",
 					"check", "credit");
 			userPayment = createPayment(paymentType, basket);
 			userPayment.receipt(basket, scan);
+			basket.clear();
 
+			String newOrder = Validator.getString(scan, "\nWould you like to start a new order? (yes/no) ", "yes",
+					"no");
+			if (newOrder.equalsIgnoreCase("no")) {
+				userItem = null;
+			} else {
+				purchase = "n";
+				userItem = itemMenu(scan);
+			}
 		}
 
 		System.out.println("\nThanks for shopping with us today, " + userName);
@@ -104,7 +114,7 @@ public class POSApp {
 			System.out.printf(", the cost of this item is $%.2f\n", userItem.getPrice() / (double) (100));
 			
 			userItem.setQuantity(Validator.getInt(sc,
-					"\nPlease enter the quantity you would like to purchase. Qty:",
+					"\nPlease enter the quantity you would like to purchase. Qty: ",
 					0));
 
 			System.out.printf(userItem.getQuantity() + " " + userItem.getName() + "(s) will cost: $%.2f\n",
