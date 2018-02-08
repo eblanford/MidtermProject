@@ -26,8 +26,8 @@ public class POSApp {
 
 		// System greeting
 		System.out.print("Welcome to the Grand Circus Tea Party!");
-		userName = Validator.getString(scan, "What is your name? ");
-		// FIXME: Take in a line, not just a single word??
+		System.out.println("What is your name? ");
+		userName = scan.nextLine();
 
 		// Stores userItem with the product information and quantity
 		userItem = itemMenu(scan);
@@ -54,8 +54,6 @@ public class POSApp {
 				}
 			}
 
-			// FIXME add an overloaded method to the getString to only accept three given
-			// inputs
 			paymentType = Validator.getString(scan, "Will you be paying with a check, cash, or credit today?", "cash",
 					"check", "credit");
 			userPayment = createPayment(paymentType);
@@ -95,13 +93,12 @@ public class POSApp {
 			// Creates our new product
 			userItem = fileInput.get(userOption - 1);
 
-			// FIXME OR SYSOUT userItem via "toString" formatting
 			System.out.print("The item you selected is " + userItem.getName());
 			System.out.printf(", the cost of this item is $%.2f", userItem.getPrice() / (double) (100));
 			
 			userItem.setQuantity(Validator.getInt(sc,
-					"Please enter the quantity you would like to purchase (we do not have thecapacity to make more than 100)\nQty:",
-					0, 100));
+					"Please enter the quantity you would like to purchase\nQty:",
+					0));
 
 			// FIXME maybe make a subTotal method in Product class (qty * price)
 			System.out.printf("Your subtotal comes to: $%.2f",
