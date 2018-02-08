@@ -25,6 +25,13 @@ public class shoppingCart {
 		System.out.println("Your shopping cart has been emptied");
 		return cart;
 	}
+	public static int sumCart(ArrayList<Product> cart) {
+		int sum = 0;
+		for(int i = 0;i<cart.size();i++) {
+			sum += (cart.get(i).getPrice()) * (cart.get(i).getQuantity());
+		}
+		return sum; 
+	}
 	
 }
 
