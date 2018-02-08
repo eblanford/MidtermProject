@@ -44,6 +44,7 @@ public class CreditCard extends Payment {
 
 		System.out.println("CreditCard Number: ");
 		setCcNum(sc.nextLong());
+		sc.nextLine();
 		System.out.println("CVV: ");
 		setCvv(sc.nextLine());
 		System.out.println("Exp date(mm/yy): ");
@@ -61,7 +62,7 @@ public class CreditCard extends Payment {
 		System.out.printf("%-10s $%-10.2f\n", "Grand Total:", super.getGrandTotal() / 100);
 
 		System.out.printf("\n%-10s %-20s\n", "Payment Type:", "Credit");
-		System.out.printf("%-10s %-20.2s\n", "Credit Card Num:", getCcNum());
+		System.out.printf("%-10s %.4s%s\n", "Credit Card Num:", getCcNum(),"-xxxx-xxxx-xxxx");
 
 		ReadWriteFiles.writeToFile(cart, super.getSubTotal(), super.getTaxTotal(), super.getGrandTotal());
 
