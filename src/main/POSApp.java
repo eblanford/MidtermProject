@@ -16,13 +16,13 @@ public class POSApp {
 	public static void main(String[] args) {
 		// Variable Declaration
 		Scanner scan = new Scanner(System.in);
-		Product userItem;
+		Product userItem = new Product();
 		Payment userPayment;
 		String paymentType;
 		String userName;
 		String purchase = "y";
 		int option;
-		// ArrayList<Product> basket = new ArrayList<Product>();
+		ArrayList<Product> basket = new ArrayList<Product>();
 
 		// System greeting
 		System.out.print("Welcome to the Grand Circus Tea Party!");
@@ -43,7 +43,11 @@ public class POSApp {
 				switch (option) {
 				case 1:
 					purchase = "y";
-					printReceipt(userItem);
+					basket = ShoppingCart.addToCart(userItem, basket);
+					String viewCart = Validator.getString(scan, "Would you like to view your cart total? (yes/no)",
+							"yes", "no");
+					if (viewCart.equalsIgnoreCase("yes"))
+						ShoppingCart.viewShoppingCart(basket);
 					break;
 				case 2:
 					userItem = itemMenu(scan);
@@ -59,7 +63,7 @@ public class POSApp {
 			userPayment = createPayment(paymentType);
 
 			// FIXME add method in Pay Classes that collect payment information
-			userPayment.payment();
+			userPayment.pay();
 			// FIXME add method in Pay Classes that print receipt and store order to .txt
 			// file
 			userPayment.receipt();
@@ -106,15 +110,6 @@ public class POSApp {
 		}
 
 		return userItem;
-	}
-
-	// FIXME to include subTotal, taxTotal, and grandTotal calculation methods in
-	// Product
-	// Prints subtotals, tax, and total
-	public static void printReceipt(Product item) {
-		System.out.printf("%-10s $%-10.2f", "Subtotal:", item.subTotal() / ((double) 100));
-		System.out.printf("%-10s $%-10.2f", "Tax:", item.taxTotal() / ((double) 100));
-		System.out.printf("%-10s $%-10.2f", "Grand Total:", item.grandTotal() / ((double) 100));
 	}
 
 	// determines which subclass to set our Pay object to
