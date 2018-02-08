@@ -88,13 +88,13 @@ public class POSApp {
 
 	// Run's through the menu and get's the user's choice
 	public static Product itemMenu(Scanner sc) {
-		System.out.println();
 		ArrayList<Product> fileInput = new ArrayList<Product>();
 		fileInput = ReadWriteFiles.readFromFile();
 		int userOption;
 		Product userItem = null;
 		int count = 1;
 
+		System.out.println("\nMENU\n----------------------------------");
 		// prints out menu with just tea names and number
 		for (int i = 0; i < fileInput.size(); i++) {
 			System.out.println("Item " + count + ": " + fileInput.get(i).getName());

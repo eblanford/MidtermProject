@@ -40,7 +40,7 @@ public class CreditCard extends Payment {
 	}
 
 	@Override
-	public void receipt(ArrayList<Product> cart, Scanner sc) {
+	public void receipt(ArrayList<Product> cart, Scanner sc, String name) {
 
 		System.out.println("CreditCard Number: ");
 		setCcNum(sc.nextLong());
@@ -50,10 +50,10 @@ public class CreditCard extends Payment {
 		System.out.println("Exp date(mm/yy): ");
 		setExp(sc.nextLine());
 		
-		System.out.printf("%-5s %-20s %-10s\n", "Qty:", "Item", "Amt.");
-		System.out.println("------------------------------------");
+		System.out.printf("%-5s %-30s %-10s\n", "Qty:", "Item", "Amt.");
+		System.out.println("----------------------------------------");
 		for (int i = 0; i < cart.size(); i++) {
-			System.out.printf("%-5d %-20s $%-10.2f\n", cart.get(i).getQuantity(), cart.get(i).getName(),
+			System.out.printf("%-5d %-30s $%-10.2f\n", cart.get(i).getQuantity(), cart.get(i).getName(),
 					(cart.get(i).getPrice() / ((double) 100)));
 		}
 
@@ -64,7 +64,7 @@ public class CreditCard extends Payment {
 		System.out.printf("\n%-10s %-20s\n", "Payment Type:", "Credit");
 		System.out.printf("%-10s %.4s%s\n", "Credit Card Num:", getCcNum(),"-xxxx-xxxx-xxxx");
 
-		ReadWriteFiles.writeToFile(cart, super.getSubTotal(), super.getTaxTotal(), super.getGrandTotal());
+		ReadWriteFiles.writeToFile(cart, super.getSubTotal(), super.getTaxTotal(), super.getGrandTotal(), name);
 
 
 	}
