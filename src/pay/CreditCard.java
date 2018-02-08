@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import products.Product;
+import utilities.ReadWriteFiles;
 
 public class CreditCard extends Payment {
 	private String exp;
@@ -62,7 +63,8 @@ public class CreditCard extends Payment {
 		System.out.printf("\n%-10s %-20s\n", "Payment Type:", "Credit");
 		System.out.printf("%-10s %-20.2s\n", "Credit Card Num:", getCcNum());
 
-	
+		ReadWriteFiles.writeToFile(cart, super.getSubTotal(), super.getTaxTotal(), super.getGrandTotal());
+
 
 	}
 
