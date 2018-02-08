@@ -60,8 +60,16 @@ public class POSApp {
 					userItem = itemMenu(scan);
 					break;
 				case 3:
-					userItem = null;
-					break OUTER_LOOP;
+					System.out.println("Your current basket total is");
+					ShoppingCart.viewShoppingCart(basket);
+					String buyBasket = Validator.getString(scan,
+							"\nWould you like to purchase your basket first? (yes/no) ", "yes", "no");
+					if (buyBasket.equalsIgnoreCase("yes")) {
+						purchase = "y";
+					} else {
+						userItem = null;
+						break OUTER_LOOP;
+					}
 				}
 			}
 
@@ -82,7 +90,7 @@ public class POSApp {
 			}
 		}
 
-		System.out.println("\nThanks for shopping with us today, " + userName);
+		System.out.println("\nThanks for shopping with us today, " + userName + "! Please come again soon.");
 		scan.close();
 	}
 

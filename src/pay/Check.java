@@ -33,7 +33,7 @@ public class Check extends Payment {
 		setCheckNumber(sc);
 
 		System.out.printf("%-5s %-30s %-10s\n", "Qty:", "Item", "Amt.");
-		System.out.println("------------------------------------");
+		System.out.println("--------------------------------------------");
 		for (int i = 0; i < cart.size(); i++) {
 			System.out.printf("%-5d %-30s $%-10.2f\n", cart.get(i).getQuantity(), cart.get(i).getName(),
 					(cart.get(i).getPrice() / ((double) 100)));
