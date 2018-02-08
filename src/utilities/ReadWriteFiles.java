@@ -85,7 +85,8 @@ public class ReadWriteFiles {
 		}return productList;
 	} 
 
-	public static void writeToFile(ArrayList<Product> order, int subTotal, double taxTotal, double grandTotal) {
+	public static void writeToFile(ArrayList<Product> order, int subTotal, double taxTotal, double grandTotal,
+			String customer) {
 		Path writeFile = Paths.get("resources/orderHistory.txt");
 
 		File file = writeFile.toFile();
@@ -93,7 +94,7 @@ public class ReadWriteFiles {
 		try {
 			PrintWriter printOut = new PrintWriter(new FileOutputStream(file, true));
 			printOut.println(order);// insert what to print in here
-			printOut.println(subTotal + "," + taxTotal + "," + grandTotal);
+			printOut.println(customer + "," + subTotal + "," + taxTotal + "," + grandTotal);
 			printOut.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

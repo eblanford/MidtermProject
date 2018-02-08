@@ -8,7 +8,7 @@ import utilities.ReadWriteFiles;
 import utilities.Validator;
 
 public class Check extends Payment {
-	int checkNumber;
+	long checkNumber;
 
 	public Check() {
 		super();
@@ -20,16 +20,16 @@ public class Check extends Payment {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getCheckNumber() {
+	public long getCheckNumber() {
 		return checkNumber;
 	}
 
 	public void setCheckNumber(Scanner sc) {
-		this.checkNumber = Validator.getInt(sc, "\nPlease provide your check number: ");
+		this.checkNumber = Validator.getLong(sc, "\nPlease provide your check number: ", 0);
 	}
 
 	@Override
-	public void receipt(ArrayList<Product> cart, Scanner sc) {
+	public void receipt(ArrayList<Product> cart, Scanner sc, String name) {
 		setCheckNumber(sc);
 
 		System.out.printf("%-5s %-30s %-10s\n", "Qty:", "Item", "Amt.");
@@ -46,7 +46,7 @@ public class Check extends Payment {
 		System.out.printf("\n%-10s %-20s\n", "Payment Type:", "Check");
 		System.out.printf("%-10s %-20d\n", "Check #:", checkNumber);
 
-		ReadWriteFiles.writeToFile(cart, super.getSubTotal(), super.getTaxTotal(), super.getGrandTotal());
+		ReadWriteFiles.writeToFile(cart, super.getSubTotal(), super.getTaxTotal(), super.getGrandTotal(), name);
 
 	}
 

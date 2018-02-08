@@ -25,9 +25,9 @@ public class POSApp {
 		ArrayList<Product> basket = new ArrayList<Product>();
 
 		// System greeting
-		System.out.println("Welcome to the Grand Circus Tea Party!");
-		System.out.println("What is your name? ");
+		System.out.print("Hello, What is your name? ");
 		userName = scan.nextLine();
+		System.out.println("Welcome to the Grand Circus Tea Party, " + userName);
 
 		// Stores userItem with the product information and quantity
 		userItem = itemMenu(scan);
@@ -69,7 +69,7 @@ public class POSApp {
 					"cash",
 					"check", "credit");
 			userPayment = createPayment(paymentType, basket);
-			userPayment.receipt(basket, scan);
+			userPayment.receipt(basket, scan, userName);
 			basket.clear();
 
 			String newOrder = Validator.getString(scan, "\nWould you like to start a new order? (yes/no) ", "yes",

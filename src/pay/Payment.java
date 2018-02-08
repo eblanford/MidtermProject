@@ -46,7 +46,7 @@ public abstract class Payment {
 		this.grandTotal = taxTotal + (double) subTotal;
 	}
 
-	public abstract void receipt(ArrayList<Product> cart, Scanner sc);
+	public abstract void receipt(ArrayList<Product> cart, Scanner sc, String name);
 
 	public String toString() {
 		return subTotal + "," + taxTotal + "," + grandTotal;

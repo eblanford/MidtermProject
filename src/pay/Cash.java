@@ -34,7 +34,7 @@ public class Cash extends Payment {
 	}
 
 	@Override
-	public void receipt(ArrayList<Product> cart, Scanner sc) {
+	public void receipt(ArrayList<Product> cart, Scanner sc, String name) {
 		double change = setInputCash(sc);
 		
 		System.out.printf("%-5s %-30s %-10s\n", "Qty:", "Item", "Amt.");
@@ -52,7 +52,7 @@ public class Cash extends Payment {
 		System.out.printf("%-10s $%-20.2f\n", "Tendered:", inputCash);
 		System.out.printf("%-10s $%-20.2f\n", "Change due:", change);
 
-		ReadWriteFiles.writeToFile(cart, super.getSubTotal(), super.getTaxTotal(), super.getGrandTotal());
+		ReadWriteFiles.writeToFile(cart, super.getSubTotal(), super.getTaxTotal(), super.getGrandTotal(), name);
 	}
 
 	public String toString() {
