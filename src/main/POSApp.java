@@ -129,7 +129,7 @@ public class POSApp {
 		if (paymentType.equalsIgnoreCase("cash")) {
 			return new Cash(ShoppingCart.sumCart(cart));
 		} else if (paymentType.equalsIgnoreCase("credit")) {
-			return new CreditCard();
+			return new CreditCard(ShoppingCart.sumCart(cart));
 		} else {
 			return new Check();
 		}
