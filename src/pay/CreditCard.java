@@ -1,6 +1,6 @@
 package pay;
 
-public class CreditCard extends Pay {
+public class CreditCard extends Payment {
 	
 	private String customerName;
 	private int cardNumber;

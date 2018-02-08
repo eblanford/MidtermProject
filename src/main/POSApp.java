@@ -6,7 +6,7 @@ import java.util.Scanner;
 import pay.Cash;
 import pay.Check;
 import pay.CreditCard;
-import pay.Pay;
+import pay.Payment;
 import products.Product;
 import utilities.ReadWriteFiles;
 import utilities.Validator;
@@ -17,7 +17,7 @@ public class POSApp {
 		// Variable Declaration
 		Scanner scan = new Scanner(System.in);
 		Product userItem;
-		Pay userPayment;
+		Payment userPayment;
 		String paymentType;
 		String userName;
 		String purchase = "y";
@@ -127,7 +127,7 @@ public class POSApp {
 	}
 
 	// determines which subclass to set our Pay object to
-	public static Pay createPayment(String paymentType) {
+	public static Payment createPayment(String paymentType) {
 		if (paymentType.equalsIgnoreCase("cash")) {
 			return new Cash();
 		} else if (paymentType.equalsIgnoreCase("credit")) {

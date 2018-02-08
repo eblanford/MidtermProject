@@ -1,6 +1,6 @@
 package pay;
 
-public abstract class Pay {
+public abstract class Payment {
 	
 	private int subTotal;
 	private int tax;
