@@ -71,4 +71,17 @@ public class Validator {
 		}
 		return d;
 	}
+
+	public static int getInt(Scanner sc, String prompt, int min) {
+		int i = 0;
+		boolean isValid = false;
+		while (isValid == false) {
+			i = getInt(sc, prompt);
+			if (i < min)
+				System.out.println("Error! Number must be " + min + " or greater.");	
+			else
+				isValid = true;
+		}
+		return i;
+	}
 }
