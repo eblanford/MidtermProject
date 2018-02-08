@@ -66,6 +66,6 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return name + " " + category + " " + description + " " + price;
+		return name + ":" + category + ":" + description + ":" + price + ":" + quantity;
 	}
 }

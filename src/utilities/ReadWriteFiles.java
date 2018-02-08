@@ -59,7 +59,7 @@ public class ReadWriteFiles {
 	}
 //Reads list of products from ProductList.txt and returns a ArrayList<Products>
 	public static ArrayList<Product> readFromFile() {
-		Path readFile = Paths.get("resources/ProductList.txt");
+		Path readFile = Paths.get("resources/productList.txt");
 		ArrayList<Product> productList = new ArrayList<Product>();
 		File file = readFile.toFile();
 		
@@ -84,4 +84,19 @@ public class ReadWriteFiles {
 			System.out.println("Something went wrong");
 		}return productList;
 	} 
+
+	public static void writeToFile(ArrayList<Product> order, int subTotal, double taxTotal, double grandTotal) {
+		Path writeFile = Paths.get("resources/orderHistory.txt");
+
+		File file = writeFile.toFile();
+
+		try {
+			PrintWriter printOut = new PrintWriter(new FileOutputStream(file, true));
+			printOut.println(order);// insert what to print in here
+			printOut.println(subTotal + "," + taxTotal + "," + grandTotal);
+			printOut.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 }

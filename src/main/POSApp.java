@@ -44,7 +44,7 @@ public class POSApp {
 				switch (option) {
 				case 1:
 					basket = ShoppingCart.addToCart(userItem, basket);
-					String viewCart = Validator.getString(scan, "Would you like to view your cart total? (yes/no) ",
+					String viewCart = Validator.getString(scan, "\nWould you like to view your cart total? (yes/no) ",
 							"yes", "no");
 					if (viewCart.equalsIgnoreCase("yes"))
 						ShoppingCart.viewShoppingCart(basket);
@@ -131,7 +131,7 @@ public class POSApp {
 		} else if (paymentType.equalsIgnoreCase("credit")) {
 			return new CreditCard();
 		} else {
-			return new Check();
+			return new Check(ShoppingCart.sumCart(cart));
 		}
 	}
 }
