@@ -38,9 +38,9 @@ public class ShoppingCart {
 	}
 
 	public static void viewShoppingCart(ArrayList<Product> cart) {
-		System.out.printf("%-10s $%-10.2f", "Subtotal:", sumCart(cart) / ((double) 100));
-		System.out.printf("%-10s $%-10.2f", "Tax:", taxCart(cart) / 100);
-		System.out.printf("%-10s $%-10.2f", "Grand Total:", (sumCart(cart) / ((double) 100)) + (taxCart(cart) / 100));
+		System.out.printf("%-10s $%-10.2f\n", "Subtotal:", sumCart(cart) / ((double) 100));
+		System.out.printf("%-10s $%-10.2f\n", "Tax:", taxCart(cart) / 100);
+		System.out.printf("%-10s $%-10.2f\n", "Grand Total:", (sumCart(cart) / ((double) 100)) + (taxCart(cart) / 100));
 	}
 
 }

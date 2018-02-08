@@ -20,12 +20,12 @@ public class POSApp {
 		Payment userPayment;
 		String paymentType;
 		String userName;
-		String purchase = "y";
+		String purchase = "n";
 		int option;
 		ArrayList<Product> basket = new ArrayList<Product>();
 
 		// System greeting
-		System.out.print("Welcome to the Grand Circus Tea Party!");
+		System.out.println("Welcome to the Grand Circus Tea Party!");
 		System.out.println("What is your name? ");
 		userName = scan.nextLine();
 
@@ -39,15 +39,22 @@ public class POSApp {
 			// Verifies if the user would like to purchase, select a new item, or exit
 			while (purchase.equalsIgnoreCase("n")) {
 				option = Validator.getInt(scan,
-						"Your options are: \n1. Purchase these items\2.Return to Menu\3.Exit Store", 1, 3);
+						"Your options are: \n1.Purchase these items\n2.Return to Menu Without Purchasing\n3.Exit Store\nSelection: ",
+						1, 3);
 				switch (option) {
 				case 1:
-					purchase = "y";
 					basket = ShoppingCart.addToCart(userItem, basket);
 					String viewCart = Validator.getString(scan, "Would you like to view your cart total? (yes/no)",
 							"yes", "no");
 					if (viewCart.equalsIgnoreCase("yes"))
 						ShoppingCart.viewShoppingCart(basket);
+					String keepShopping = Validator.getString(scan, "Would you like to continue shopping? (yes/no)",
+							"yes", "no");
+					if (keepShopping.equalsIgnoreCase("yes")) {
+						userItem = itemMenu(scan);
+					} else {
+						purchase = "y";
+					}
 					break;
 				case 2:
 					userItem = itemMenu(scan);
@@ -62,11 +69,11 @@ public class POSApp {
 					"check", "credit");
 			userPayment = createPayment(paymentType);
 
-			// FIXME add method in Pay Classes that collect payment information
-			userPayment.pay();
-			// FIXME add method in Pay Classes that print receipt and store order to .txt
-			// file
-			userPayment.receipt();
+			// // FIXME add method in Pay Classes that collect payment information
+			// userPayment.pay();
+			// // FIXME add method in Pay Classes that print receipt and store order to .txt
+			// // file
+			// userPayment.receipt();
 
 		}
 
@@ -76,6 +83,7 @@ public class POSApp {
 
 	// Run's through the menu and get's the user's choice
 	public static Product itemMenu(Scanner sc) {
+		System.out.println("Hello");
 		ArrayList<Product> fileInput = new ArrayList<Product>();
 		fileInput = ReadWriteFiles.readFromFile();
 		int userOption;
@@ -97,15 +105,14 @@ public class POSApp {
 			// Creates our new product
 			userItem = fileInput.get(userOption - 1);
 
-			System.out.print("The item you selected is " + userItem.getName());
-			System.out.printf(", the cost of this item is $%.2f", userItem.getPrice() / (double) (100));
+			System.out.print("The item you selected is a " + userItem.getName());
+			System.out.printf(", the cost of this item is $%.2f\n", userItem.getPrice() / (double) (100));
 			
 			userItem.setQuantity(Validator.getInt(sc,
 					"Please enter the quantity you would like to purchase\nQty:",
 					0));
 
-			// FIXME maybe make a subTotal method in Product class (qty * price)
-			System.out.printf("Your subtotal comes to: $%.2f",
+			System.out.printf(userItem.getQuantity() + " " + userItem.getName() + "(s) will cost: $%.2f\n",
 					(userItem.getPrice() * userItem.getQuantity()) / ((double) 100));
 		}
 

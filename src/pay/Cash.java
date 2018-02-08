@@ -14,8 +14,15 @@ Scanner scan = new Scanner(System.in);
 		this.tax = (subTotal*0.06)/100;
 		this.grandTotal = tax + subTotal;
 		this.tenderedAmt = tenderedAmt;
+<<<<<<< HEAD
 
 		
+=======
+		this.total = total;
+		this.cashBack = cashBack;
+		this.receipt = receipt;
+				
+>>>>>>> 108339148c887ebe84ac0b14f638e818757a0f8f
 	}
 
 	public double getTenderedAmt() {

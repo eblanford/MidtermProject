@@ -1,1 +1,12 @@
-Davids Tea,tea,24pkGreenTea,400
+Davids Tea,Loose Tea,24 Pack Green Tea,400
+Bigalow Chia Loose, Loose Tea, 8 oz Loose Chai,600
+G.T Kombucha,Kombucha,12 oz Bottle Raw,365
+Cup of Black Tea,Hot Tea,8 oz cup Breakfast Tea,100
+Black Lychee Tea,Hot Tea,8 oz cup Black Tea Scented with Lychee Peels,325
+Jasmine Silver Needle Tea,Hot tea,8 oz cup Organic Jasmine Tea with White Tea Buds,325
+Donut,Pastries,Sour Dough,150
+Wild Blueberry Muffin,Pastries,Muffin Dough,150
+Cranberry Orange Muffin,Pastries,Muffin dough,150
+Cinnamon Crunch Scone,Pastries,Scone,250
+Cheese Pastry,Pastries,Pastry with Cream Cheese Filling and Cinnamon Sugar Topping,250
+French Croissant,Pastries,Croissant Dough,175
