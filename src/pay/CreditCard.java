@@ -2,12 +2,13 @@ package pay;
 
 public class CreditCard extends Payment {
 	
-	private String customerName;
+	private String name;
 	private int cardNumber;
 	private int expDate;
 	private int cvvNumber;
 	
-	public void CreditCard (int cardNumber, int expDate, int cvvNumber) {
+	public void CreditCard (String name,int cardNumber, int expDate, int cvvNumber) {
+		this.name=name;
 		this.cardNumber = cardNumber;
 		this.expDate = expDate;
 		this.cvvNumber = cvvNumber;

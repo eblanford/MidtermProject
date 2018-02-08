@@ -42,6 +42,13 @@ public class Check extends Payment {
 	public void setCheckingNumber(int checkingNumber) {
 		this.checkingNumber = checkingNumber;
 	}
+
+
+	@Override
+	public void pay() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

@@ -1,21 +1,24 @@
 package pay;
 
-public class Cash extends Payment {
+import java.util.Scanner;
 
-	int tenderedAmt;
-	int total;
-	int cashBack;
-	int receipt;
+public class Cash extends Payment {
+Scanner scan = new Scanner(System.in);
+	private double tenderedAmt;
+	private double subTotal;
+	private double tax;
+	private double grandTotal;
 	
-	public void Cash(int tenderedAmt, int total, int cashBack, int receipt) {
+	public Cash(double subTotal,double tenderedAmt) {
+		super(subTotal);
+		this.tax = (subTotal*0.06)/100;
+		this.grandTotal = tax + subTotal;
 		this.tenderedAmt = tenderedAmt;
-		this.total = total;
-		this.cashBack = cashBack;
-		this.receipt = receipt;
+
 		
 	}
 
-	public int getTenderedAmt() {
+	public double getTenderedAmt() {
 		return tenderedAmt;
 	}
 
@@ -23,33 +26,15 @@ public class Cash extends Payment {
 		this.tenderedAmt = tenderedAmt;
 	}
 
-	public int getTotal() {
-		return total;
-	}
-
-	public void setTotal(int total) {
-		this.total = total;
-	}
-
-	public int getCashBack() {
-		return cashBack;
-	}
-
-	public void setCashBack(int cashBack) {
-		this.cashBack = cashBack;
-	}
-
-	public int getReceipt() {
-		return receipt;
-	}
-
-	public void setReceipt(int receipt) {
-		this.receipt = receipt;
-	}
-
 	@Override
 	public void pay() {
-		// TODO Auto-generated method stub
+		System.out.println("Cash tendered: ");
+		tenderedAmt=scan.nextDouble();
+		double change = tenderedAmt - grandTotal;
+		System.out.println("Change: "+ change);
+		
+		
+		
 		
 	}
 	

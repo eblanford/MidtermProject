@@ -1,21 +1,25 @@
 package pay;
 
+import java.util.Scanner;
+
 public abstract class Payment {
 	
-	private int subTotal;
-	private int tax;
-	private int grandTotal;
+	private double subTotal;
+	private double tax;
+	private double grandTotal;
 	
 	
-	public void Payment() {
-	
+	public Payment(double subTotal) {
+		this.subTotal= subTotal/100;
+		tax = (subTotal*0.06)/100;
+		grandTotal = tax + subTotal;
 	}
 	
 	public void Receipt() {
 	
 	}
 
-	public int getSubTotal() {
+	public double getSubTotal() {
 		return subTotal;
 	}
 
@@ -23,7 +27,7 @@ public abstract class Payment {
 		this.subTotal = subTotal;
 	}
 
-	public int getTax() {
+	public double getTax() {
 		return tax;
 	}
 
@@ -31,7 +35,7 @@ public abstract class Payment {
 		this.tax = tax;
 	}
 
-	public int getGrandTotal() {
+	public double getGrandTotal() {
 		return grandTotal;
 	}
 
