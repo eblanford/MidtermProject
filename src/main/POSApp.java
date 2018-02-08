@@ -39,7 +39,7 @@ public class POSApp {
 			// Verifies if the user would like to purchase, select a new item, or exit
 			while (purchase.equalsIgnoreCase("n")) {
 				option = Validator.getInt(scan,
-						"Your options are: \n1.Purchase these items\n2.Return to Menu Without Purchasing\n3.Exit Store\nSelection: ",
+						"\nYour options are: \n1.Purchase these items\n2.Return to Menu Without Purchasing\n3.Exit Store\nSelection: ",
 						1, 3);
 				switch (option) {
 				case 1:
@@ -67,23 +67,18 @@ public class POSApp {
 
 			paymentType = Validator.getString(scan, "Will you be paying with a check, cash, or credit today?", "cash",
 					"check", "credit");
-			userPayment = createPayment(paymentType);
-
-			// // FIXME add method in Pay Classes that collect payment information
-			// userPayment.pay();
-			// // FIXME add method in Pay Classes that print receipt and store order to .txt
-			// // file
-			// userPayment.receipt();
+			userPayment = createPayment(paymentType, basket);
+			userPayment.receipt(basket, scan);
 
 		}
 
-		System.out.println("Thanks for shopping with us today, " + userName);
+		System.out.println("\nThanks for shopping with us today, " + userName);
 		scan.close();
 	}
 
 	// Run's through the menu and get's the user's choice
 	public static Product itemMenu(Scanner sc) {
-		System.out.println("Hello");
+		System.out.println();
 		ArrayList<Product> fileInput = new ArrayList<Product>();
 		fileInput = ReadWriteFiles.readFromFile();
 		int userOption;
@@ -99,17 +94,17 @@ public class POSApp {
 		System.out.println(count + ": Exit Store");
 
 		// Prompts the user to pick an item
-		userOption = Validator.getInt(sc, "Please pick an item number from the list to view: ", 1, count);
+		userOption = Validator.getInt(sc, "\nPlease pick an item number from the list to view: ", 1, count);
 
 		if (userOption != count) {
 			// Creates our new product
 			userItem = fileInput.get(userOption - 1);
 
-			System.out.print("The item you selected is a " + userItem.getName());
+			System.out.print("\nThe item you selected is a " + userItem.getName());
 			System.out.printf(", the cost of this item is $%.2f\n", userItem.getPrice() / (double) (100));
 			
 			userItem.setQuantity(Validator.getInt(sc,
-					"Please enter the quantity you would like to purchase\nQty:",
+					"\nPlease enter the quantity you would like to purchase. Qty:",
 					0));
 
 			System.out.printf(userItem.getQuantity() + " " + userItem.getName() + "(s) will cost: $%.2f\n",
@@ -120,9 +115,9 @@ public class POSApp {
 	}
 
 	// determines which subclass to set our Pay object to
-	public static Payment createPayment(String paymentType) {
+	public static Payment createPayment(String paymentType, ArrayList<Product> cart) {
 		if (paymentType.equalsIgnoreCase("cash")) {
-			return new Cash();
+			return new Cash(ShoppingCart.sumCart(cart));
 		} else if (paymentType.equalsIgnoreCase("credit")) {
 			return new CreditCard();
 		} else {

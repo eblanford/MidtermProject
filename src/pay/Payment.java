@@ -1,25 +1,28 @@
 package pay;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import products.Product;
+
 public abstract class Payment {
-	
-	private double subTotal;
-	private double tax;
-	private double grandTotal;
-	
-	
-	public Payment(double subTotal) {
-		this.subTotal= subTotal/100;
-		tax = (subTotal*0.06)/100;
-		grandTotal = tax + subTotal;
-	}
-	
-	public void Receipt() {
-	
+	int subTotal;
+	double taxTotal;
+	double grandTotal;
+
+	public Payment() {
+		this.subTotal = 0;
+		this.taxTotal = 0;
+		this.grandTotal = 0;
 	}
 
-	public double getSubTotal() {
+	public Payment(int subTotal) {
+		this.subTotal = subTotal;
+		this.taxTotal = (subTotal) * ((double) 0.06);
+		this.grandTotal = taxTotal + (double) subTotal;
+	}
+
+	public int getSubTotal() {
 		return subTotal;
 	}
 
@@ -27,24 +30,26 @@ public abstract class Payment {
 		this.subTotal = subTotal;
 	}
 
-	public double getTax() {
-		return tax;
+	public double getTaxTotal() {
+		return taxTotal;
 	}
 
-	public void setTax(int tax) {
-		this.tax = tax;
+	public void setTaxTotal() {
+		this.taxTotal = (subTotal) * ((double) 0.06);
 	}
 
 	public double getGrandTotal() {
 		return grandTotal;
 	}
 
-	public void setGrandTotal(int grandTotal) {
-		this.grandTotal = grandTotal;
+	public void setGrandTotal() {
+		this.grandTotal = taxTotal + (double) subTotal;
 	}
-	 
-	public abstract void pay();
+
+	public abstract void receipt(ArrayList<Product> cart, Scanner sc);
+
+	public String toString() {
+		return subTotal + "," + taxTotal + "," + grandTotal;
+	}
+
 }
-
-
-

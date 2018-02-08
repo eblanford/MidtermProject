@@ -1,55 +1,17 @@
 package pay;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import products.Product;
+
 public class Check extends Payment {
-	
-	String customerName;
-	int routingNumber;
-	int checkingNumber;
-	
-	
-	public void Check(String customerName, int routingNumber, int checkingNumber) {
-		this.customerName = customerName;
-		this.routingNumber = routingNumber;
-		this.checkingNumber = checkingNumber;
-	}
-
-
-	public String getCustomerName() {
-		return customerName;
-	}
-
-
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-
-
-	public int getRoutingNumber() {
-		return routingNumber;
-	}
-
-
-	public void setRoutingNumber(int routingNumber) {
-		this.routingNumber = routingNumber;
-	}
-
-
-	public int getCheckingNumber() {
-		return checkingNumber;
-	}
-
-
-	public void setCheckingNumber(int checkingNumber) {
-		this.checkingNumber = checkingNumber;
-	}
-
 
 	@Override
-	public void pay() {
+	public void receipt(ArrayList<Product> cart, Scanner sc) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 
 }
-
