@@ -10,6 +10,48 @@ public class Validator {
 		return s;
 	}
 
+	// Allows user to enter in three possible options (i,e, cash, credit, check)
+	public static String getString(Scanner sc, String prompt, String opt1, String opt2, String opt3) {
+		String s = "";
+		boolean isValid = false;
+		while (isValid == false) {
+			System.out.print(prompt);
+			s = sc.next(); // read user entry
+			sc.nextLine(); // discard any other data entered on the line
+			if (s.equalsIgnoreCase(opt1)) {
+				isValid = true;
+			} else if (s.equalsIgnoreCase(opt2)) {
+				isValid = true;
+			} else if (s.equalsIgnoreCase(opt3)) {
+				isValid = true;
+			} else {
+				System.out.println("Invalid input, please try again!");
+			}
+		}
+
+		return s;
+	}
+
+	// Allows user to enter in three possible options (i,e, yes/no)
+	public static String getString(Scanner sc, String prompt, String opt1, String opt2) {
+		String s = "";
+		boolean isValid = false;
+		while (isValid == false) {
+			System.out.print(prompt);
+			s = sc.next(); // read user entry
+			sc.nextLine(); // discard any other data entered on the line
+			if (s.equalsIgnoreCase(opt1)) {
+				isValid = true;
+			} else if (s.equalsIgnoreCase(opt2)) {
+				isValid = true;
+			} else {
+				System.out.println("Invalid input, please try again!");
+			}
+		}
+
+		return s;
+	}
+
 	public static int getInt(Scanner sc, String prompt) {
 		int i = 0;
 		boolean isValid = false;
@@ -70,5 +112,18 @@ public class Validator {
 				isValid = true;
 		}
 		return d;
+	}
+
+	public static int getInt(Scanner sc, String prompt, int min) {
+		int i = 0;
+		boolean isValid = false;
+		while (isValid == false) {
+			i = getInt(sc, prompt);
+			if (i < min)
+				System.out.println("Error! Number must be " + min + " or greater.");	
+			else
+				isValid = true;
+		}
+		return i;
 	}
 }

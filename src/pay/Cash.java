@@ -46,5 +46,11 @@ public class Cash extends Payment {
 	public void setReceipt(int receipt) {
 		this.receipt = receipt;
 	}
+
+	@Override
+	public void pay() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	}

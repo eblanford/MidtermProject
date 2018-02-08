@@ -39,7 +39,7 @@ public abstract class Payment {
 		this.grandTotal = grandTotal;
 	}
 	 
-	
+	public abstract void pay();
 }
 
 
