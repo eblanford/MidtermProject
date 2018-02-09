@@ -140,11 +140,11 @@ public class Validator {
 		return i;
 	}
 
-	public static long getLong(Scanner sc, String prompt, int min) {
-		long i = 0l;
+	public static long getLong(Scanner sc, String prompt, long min) {
+		long i = 1l;
 		boolean isValid = false;
 		while (isValid == false) {
-			System.out.println(sc);
+			System.out.print(prompt);
 			i = sc.nextLong();
 			if (i < min)
 				System.out.println("Error! Number must be positive");

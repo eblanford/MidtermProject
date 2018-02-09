@@ -37,7 +37,7 @@ public class Cash extends Payment {
 	public void receipt(ArrayList<Product> cart, Scanner sc, String name) {
 		double change = setInputCash(sc);
 		
-		System.out.printf("%-5s %-30s %-10s\n", "Qty:", "Item", "Amt.");
+		System.out.printf("%\n-5s %-30s %-10s\n", "Qty:", "Item", "Amt.");
 		System.out.println("--------------------------------------------");
 		for (int i = 0; i < cart.size(); i++) {
 			System.out.printf("%-5d %-30s $%-10.2f\n", cart.get(i).getQuantity(), cart.get(i).getName(),
