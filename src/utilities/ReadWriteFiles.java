@@ -1,3 +1,7 @@
+/*
+ * Class of file methods
+ */
+
 package utilities;
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,7 +18,7 @@ import java.util.ArrayList;
 import products.Product;
 public class ReadWriteFiles {
 
-
+	// Generic directory creation method (unused)
 	public static void createDirectory(String dirString) {
 		Path dirPath = Paths.get(dirString);
 		System.out.println(dirPath.toAbsolutePath());
@@ -29,6 +33,7 @@ public class ReadWriteFiles {
 		}
 	}
 
+	// Generic file creation method (unused)
 	public static void createFile(String dirString, String fileString) {
 		Path filePath = Paths.get(dirString, fileString);
 		if (Files.notExists(filePath)) {
@@ -43,6 +48,8 @@ public class ReadWriteFiles {
 		}
 
 	}
+
+	// Generic write to file method (unused, modified below)
 	public static void writeToFile(String dirString, String fileString) {
 		Path writeFile = Paths.get(dirString, fileString);
 		
@@ -57,7 +64,9 @@ public class ReadWriteFiles {
 			e.printStackTrace();
 		}
 	}
-//Reads list of products from ProductList.txt and returns a ArrayList<Products>
+
+	// Reads list of products from ProductList.txt and returns an
+	// ArrayList<Products>
 	public static ArrayList<Product> readFromFile() {
 		Path readFile = Paths.get("resources/productList.txt");
 		ArrayList<Product> productList = new ArrayList<Product>();
@@ -68,6 +77,9 @@ public class ReadWriteFiles {
 			BufferedReader reader = new BufferedReader(fr);
 			String line = reader.readLine();
 			
+			// loops through each line and creates a string array of items separated by ,
+			// converts price to an int and stores as a new product
+			// adds each new product to an ArrayList
 			while(line != null) {
 				String[] list = line.split(",");
 				int result = Integer.parseInt(list[3]);
@@ -85,6 +97,8 @@ public class ReadWriteFiles {
 		}return productList;
 	} 
 
+	// A write to file that prints from receipt to orderHistory.txt all of the
+	// information to save for logging purposes
 	public static void writeToFile(ArrayList<Product> order, int subTotal, double taxTotal, double grandTotal,
 			String customer) {
 		Path writeFile = Paths.get("resources/orderHistory.txt");
@@ -93,8 +107,8 @@ public class ReadWriteFiles {
 
 		try {
 			PrintWriter printOut = new PrintWriter(new FileOutputStream(file, true));
-			printOut.println(order);// insert what to print in here
-			printOut.println(customer + "," + subTotal + "," + taxTotal + "," + grandTotal);
+			printOut.println(order); // prints each product in an array
+			printOut.println(customer + "," + subTotal + "," + taxTotal + "," + grandTotal); // prints name & cost info
 			printOut.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

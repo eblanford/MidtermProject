@@ -1,29 +1,37 @@
+/*
+ * Subclass of Payment
+ * Used for check payments to:
+ * 1. Prompt the user for check number
+ * 2. Returns a receipt & check number
+ */
+
 package pay;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import main.ShoppingCart;
 import products.Product;
 import utilities.ReadWriteFiles;
 import utilities.Validator;
 
 public class Check extends Payment {
-	long checkNumber;
+	private long checkNumber;
 
+	// Constructors
 	public Check() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Check(int subTotal) {
 		super(subTotal);
-		// TODO Auto-generated constructor stub
 	}
 
 	public long getCheckNumber() {
 		return checkNumber;
 	}
 
+	// Setter prompts for user check number using Validator
 	public void setCheckNumber(Scanner sc) {
 		this.checkNumber = Validator.getLong(sc, "\nWhat is your check number? ", 0l);
 	}
@@ -32,6 +40,7 @@ public class Check extends Payment {
 	public void receipt(ArrayList<Product> cart, Scanner sc, String name) {
 		setCheckNumber(sc);
 
+		// Item list
 		System.out.printf("\n%-5s %-30s %-10s\n", "Qty:", "Item", "Amt.");
 		System.out.println("--------------------------------------------");
 		for (int i = 0; i < cart.size(); i++) {
@@ -39,13 +48,14 @@ public class Check extends Payment {
 					(cart.get(i).getPrice() / ((double) 100)));
 		}
 
-		System.out.printf("\n%-10s $%-10.2f\n", "Subtotal:", (super.getSubTotal() / ((double) 100)));
-		System.out.printf("%-10s $%-10.2f\n", "Tax:", super.getTaxTotal() / 100);
-		System.out.printf("%-10s $%-10.2f\n", "Grand Total:", super.getGrandTotal() / 100);
+		// Cost Information
+		ShoppingCart.viewShoppingCart(cart);
 
-		System.out.printf("\n%-10s %-20s\n", "Payment Type:", "Check");
-		System.out.printf("%-10s %-20d\n", "Check #:", checkNumber);
+		// Payment information
+		System.out.printf("\n%-15s %-10s\n", "Payment Type:", "Check");
+		System.out.printf("%-15s %-10d\n", "Check #:", checkNumber);
 
+		// Saves order to file for later use
 		ReadWriteFiles.writeToFile(cart, super.getSubTotal(), super.getTaxTotal(), super.getGrandTotal(), name);
 
 	}

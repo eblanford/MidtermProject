@@ -1,8 +1,13 @@
+/*
+ * Class of validation methods
+ */
+
 package utilities;
 
 import java.util.Scanner;
 
 public class Validator {
+
 	public static String getString(Scanner sc, String prompt) {
 		System.out.print(prompt);
 		String s = sc.next(); // read user entry
@@ -32,7 +37,7 @@ public class Validator {
 		return s;
 	}
 
-	// Allows user to enter in three possible options (i,e, yes/no)
+	// Allows user to enter in two possible options (i,e, yes/no)
 	public static String getString(Scanner sc, String prompt, String opt1, String opt2) {
 		String s = "";
 		boolean isValid = false;
@@ -114,6 +119,7 @@ public class Validator {
 		return d;
 	}
 
+	// double with just a minimum (i.e. non-negative)
 	public static double getDouble(Scanner sc, String prompt, double min) {
 		double d = 0;
 		boolean isValid = false;
@@ -127,6 +133,7 @@ public class Validator {
 		return d;
 	}
 
+	// int with just a minimum (i.e. non-negative)
 	public static int getInt(Scanner sc, String prompt, int min) {
 		int i = 0;
 		boolean isValid = false;
@@ -140,6 +147,7 @@ public class Validator {
 		return i;
 	}
 
+	// long with just a minimum (i.e. non-negative)
 	public static long getLong(Scanner sc, String prompt, long min) {
 		long i = 1l;
 		boolean isValid = false;

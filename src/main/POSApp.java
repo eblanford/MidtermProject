@@ -42,6 +42,7 @@ public class POSApp {
 						"\nYour options are: \n1.Purchase these items\n2.Return to Menu Without Purchasing\n3.Exit Store\nSelection: ",
 						1, 3);
 				switch (option) {
+				// Purchases items and allows user to view subtotal, and continue shopping
 				case 1:
 					basket = ShoppingCart.addToCart(userItem, basket);
 					String viewCart = Validator.getString(scan, "\nWould you like to view your cart total? (yes/no) ",
@@ -56,9 +57,11 @@ public class POSApp {
 						purchase = "y";
 					}
 					break;
+				// returns to menu
 				case 2:
 					userItem = itemMenu(scan);
 					break;
+				// exits system, but prompts if user wants to purchase first
 				case 3:
 					System.out.println("Your current basket total is");
 					ShoppingCart.viewShoppingCart(basket);
@@ -73,13 +76,18 @@ public class POSApp {
 				}
 			}
 
+			// collects payment type
 			paymentType = Validator.getString(scan, "\nWill you be paying with a check, cash, or credit today? ",
 					"cash",
 					"check", "credit");
+
+			// prints receipt based on which payment type
 			userPayment = createPayment(paymentType, basket);
 			userPayment.receipt(basket, scan, userName);
+			// empties cart
 			basket.clear();
 
+			// Prompts used for new order
 			String newOrder = Validator.getString(scan, "\nWould you like to start a new order? (yes/no) ", "yes",
 					"no");
 			if (newOrder.equalsIgnoreCase("no")) {
@@ -90,6 +98,7 @@ public class POSApp {
 			}
 		}
 
+		// exit message
 		System.out.println("\nThanks for shopping with us today, " + userName + "! Please come again soon.");
 		scan.close();
 	}
@@ -115,12 +124,13 @@ public class POSApp {
 		userOption = Validator.getInt(sc, "\nPlease pick an item number from the list to view: ", 1, count);
 
 		if (userOption != count) {
-			// Creates our new product
+			// Creates new product selected
 			userItem = fileInput.get(userOption - 1);
 
 			System.out.print("\nThe item you selected is a " + userItem.getName());
 			System.out.printf(", the cost of this item is $%.2f\n", userItem.getPrice() / (double) (100));
 			
+			// sets quantity of new product
 			userItem.setQuantity(Validator.getInt(sc,
 					"\nPlease enter the quantity you would like to purchase. Qty: ",
 					0));

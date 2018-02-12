@@ -1,3 +1,8 @@
+/*
+ * Product Class
+ * Used to store all of the information of a specific product in an order
+ */
+
 package products;
 
 public class Product {
@@ -7,6 +12,7 @@ public class Product {
 	private int price;
 	private int quantity;
 
+	// Constructors
 	public Product() {
 		this.name = "";
 		this.category = "";
@@ -15,6 +21,7 @@ public class Product {
 		this.quantity = 0;
 	}
 
+	// Constructor for a product before quantity is defined (default qty set to 1)
 	public Product(String name, String category, String description, int price) {
 		super();
 		this.name = name;
@@ -24,6 +31,7 @@ public class Product {
 		this.quantity = 1;
 	}
 
+	// Generic getters and setters
 	public String getName() {
 		return name;
 	}
@@ -64,6 +72,7 @@ public class Product {
 		this.quantity = quantity;
 	}
 
+	// formatted to print to a text file in order receipt can be split later using :
 	@Override
 	public String toString() {
 		return name + ":" + category + ":" + description + ":" + price + ":" + quantity;
