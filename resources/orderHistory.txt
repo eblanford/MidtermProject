@@ -1,14 +1,1 @@
-[Bigalow Chia Loose Tea: Loose Tea: 8 oz Loose Chai:600:2]
-em,1200,72.0,1272.0
-[Jasmine Silver Needle Tea:Hot tea:8 oz cup Organic Jasmine Tea with White Tea Buds:325:2, Donut:Pastries:Sour Dough:150:2]
-Emily,950,57.0,1007.0
-[French Croissant:Pastries:Croissant Dough:175:3]
-em,525,31.5,556.5
-[Jasmine Silver Needle Tea:Hot tea:8 oz cup Organic Jasmine Tea with White Tea Buds:325:3]
-em,975,58.5,1033.5
-[Cranberry Orange Muffin:Pastries:Muffin dough:150:1, Bigalow Chia Loose Tea: Loose Tea: 8 oz Loose Chai:600:3]
-Emily,1950,117.0,2067.0
-[French Croissant:Pastries:Croissant Dough:175:1]
-em,175,10.5,185.5
-[Cinnamon Crunch Scone:Pastries:Scone:250:1]
-e,250,15.0,265.0
+
